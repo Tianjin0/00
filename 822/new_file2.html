@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			p{width: 100px;height: 100px;float: left;background-color: gray;margin-right: 20px;}
+		    .light{background-color: orange;}
+		</style>
+	</head>
+	<body>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+		<p>4</p>
+		<p>5</p>
+	</body>
+	<script>
+		var ops = document.getElementsByTagName("p");
+		for(var i = 0;i<ops.length;i++){
+			ops[i].onclick = function(){
+				for(var j = 0;j<ops.length;j++){
+					ops[j].className = "";
+				}
+				this.className = "light";
+			}
+		}
+	</script>
+</html>

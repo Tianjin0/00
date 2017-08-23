@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title><!--1.轮播图-->
+		<style>
+			*{margin: 0;padding: 0;}
+			.carousel{width: 780px;height: 350px;margin: 50px auto;
+			position: relative;overflow: hidden;}
+			.carousel ul{list-style: none;}
+			.carousel ul li{display: none;}
+			.carousel ul li.current{display: block;}
+			.carousel span{position: absolute;width: 55px;height: 55px;
+			top: 130px;cursor: pointer;text-align: center;color: gold;}
+			.carousel .leftBtn{left: 10px;}
+			.carousel .rightBtn{right: 10px;}
+			.carousel .circles{position: absolute;bottom: 0;width: 200px;
+			height: 17px;left: 80%;}
+			.carousel .circles ol{list-style: none;}
+			.carousel .circles ol li{float: left;width: 17px;height: 10px;margin-right: 13px;
+			background-color: gold;border-radius: 30%;cursor: pointer;}
+			.carousel .circles ol li.current{background-color: purple;}
+		</style>
+	</head>
+	<body>
+		<div class="carousel">
+			<div class="imagesList" id="imagesList">
+				<ul>
+                    <li class="current"> <a href=""> <img src="../imgs/0.jpg"> </a> </li>
+                    <li> <a href=""> <img src="../imgs/1.jpg"> </a> </li>
+                    <li> <a href=""> <img src="../imgs/2.jpg"> </a> </li>
+                    <li> <a href=""> <img src="../imgs/3.jpg"> </a> </li>
+                    <li> <a href=""> <img src="../imgs/4.jpg"> </a> </li>
+                </ul>
+			</div>
+			<div class="btns">
+				<span class="leftBtn" id="carousel_leftBtn">左</span>
+                <span class="rightBtn" id="carousel_rightBtn">右</span>
+			</div>
+			<div class="circles" id="circles">
+                <ol>
+                    <li class="current"></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            </div>
+		</div>
+	</body>
+	<script>
+		var oimgs = 
+		document.getElementsByClassName("imagesList")[0].getElementsByTagName("li");
+		var oleftbtn = document.getElementsByClassName("btns")[0].getElementsByClassName("leftBtn")[0];
+		var orightbtn = document.getElementsByClassName("btns")[0].getElementsByClassName("rightBtn")[0];
+		var ocircles = document.getElementsByClassName("circles")[0].getElementsByTagName("li");
+		var index = 0;
+		oleftbtn.onclick = function(){
+			index--;
+			if(index < 0){
+				index = parseInt(oimgs.length-1);
+			}
+			imgschange();
+		}
+		orightbtn.onclick = function(){
+			index++;
+			if(index >oimgs.length-1){
+				index = 0;
+			}
+			imgschange();
+		}
+		for(var i = 0;i<ocircles.length;i++){
+			(function(i){
+				ocircles[i].onmouseover = function(){
+					index = i;
+					imgschange();
+				}
+			})(i);
+		}
+		function imgschange(){
+			for(var i = 0;i<oimgs.length;i++){				
+                oimgs[i].className = "";
+                ocircles[i].className = "";
+			}
+			oimgs[index].className = "current";
+			ocircles[index].className = "current";
+		}		
+	</script>
+</html>

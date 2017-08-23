@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" id="plus" value="字号增加">
+        <input type="button" id="minus" value="字号减小">
+        <div id="box">
+            <p>wweb1707web1707web1707web1707web1707web1707web1707web1707web1707web1707eb1707</p>
+            <p>wweb1707web1707web1707web1707web1707web1707web1707web1707web1707web1707eb1707</p>
+            <p>wweb1707web1707web1707web1707web1707web1707web1707web1707web1707web1707eb1707</p>
+            <p>wweb1707web1707web1707web1707web1707web1707web1707web1707web1707web1707eb1707</p>
+        </div>  
+	</body>
+	<script>
+        var oPlusBtn = document.getElementById("plus");
+        var oMinusBtn = document.getElementById("minus");
+        var oBox = document.getElementById("box");
+        var fontSize = parseInt(getComputedStyle(oBox).fontSize);
+        oPlusBtn.onclick = function(){
+        	fontSize += 2;
+        	if(fontSize > 30){
+        		fontSize = 30;
+        	}
+        	changeFontSize();
+        }
+        oMinusBtn.onclick = function(){
+        	fontSize -= 2;
+        	if(fontSize < 10){
+        		fontSize = 10;
+        	}
+        	changeFontSize();
+        }
+        function changeFontSize(){
+        	oPlusBtn.disabled = fontSize ===30;
+        	oMinusBtn.disabled = fontSize ===10;
+        	oBox.style.fontSize = fontSize + "px";
+        }
+</html>
